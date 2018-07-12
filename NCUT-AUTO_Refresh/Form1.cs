@@ -68,20 +68,34 @@ namespace NCUT_AUTO_Refresh
                 {
                     Stream receviceStream = result.GetResponseStream();
                     StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("gb2312"));
+                    button1.Enabled = true;
+                    button2.Enabled = true;
+                    button3.Enabled = true;
+                    button4.Enabled = true;
+                    button5.Enabled = true;
+                    button6.Enabled = true;
                     strHTML = readerOfStream.ReadToEnd();
                     readerOfStream.Close();
                     receviceStream.Close();
                     result.Close();
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("没有连接到NCUT！", "未连接");
+                    //MessageBox.Show("没有连接到NCUT！", "未连接");
                     Console.WriteLine(ex.Message);
 
                     pictureBox1.Hide();
                     pictureBox2.Show();
                     pictureBox3.Hide();
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    button3.Enabled = false;
+                    button4.Enabled = true;
+                    button5.Enabled = true;
+                    button6.Enabled = true;
 
+                    return "您没有连接到网络，或者没有连接到NCUT！                                      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;";
                     //throw;
                 }
 
@@ -146,13 +160,21 @@ namespace NCUT_AUTO_Refresh
                 string flow3 = ".";
                 string detail;
                 detail = "已使用流量 : " + flow1 / 1024 + flow3 + flow0 / 1024 + " M";
-                this.textBox2.Text = detail;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                //this.textBox2.Text = detail;
+                label3.Text = detail;
             }
             catch (Exception ex)
             {
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
+                timer2.Stop();
+                timer4.Stop();
+                timer3.Stop();
+                this.label3.Text = "-------------------";
                 Console.WriteLine(ex.Message);
 
             }
@@ -162,9 +184,11 @@ namespace NCUT_AUTO_Refresh
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             toolStripStatusLabel1.Text = DateTime.Now.ToString();
             toolStripStatusLabel2.Text = "完成初始化。";
             timer1.Start();
+            //button5_Click(sender,e);
         }
 
 
@@ -207,7 +231,7 @@ namespace NCUT_AUTO_Refresh
         {
 
             toolStripStatusLabel2.Text = "正在进行间隔2s的刷新。";
-            Fun();
+
             pictureBox2.Hide();
             pictureBox3.Hide();
             if (IsPic)
@@ -220,6 +244,7 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Show();
                 IsPic = !IsPic;
             }
+            Fun();
             textBox1.Text += "\r\n";
         }
 
@@ -227,7 +252,7 @@ namespace NCUT_AUTO_Refresh
         {
 
             toolStripStatusLabel2.Text = "正在进行间隔3s的刷新。";
-            Fun();
+            
             pictureBox2.Hide();
             pictureBox3.Hide();
             if (IsPic)
@@ -240,13 +265,14 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Show();
                 IsPic = !IsPic;
             }
+            Fun();
             textBox1.Text += "\r\n";
         }
 
         private void timer4_Tick(object sender, EventArgs e)
         {
             toolStripStatusLabel2.Text = "正在进行间隔5s的刷新。";
-            Fun();
+
             pictureBox2.Hide();
             pictureBox3.Hide();
             if (IsPic)
@@ -259,6 +285,7 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Show();
                 IsPic = !IsPic;
             }
+            Fun();
             textBox1.Text += "\r\n";
         }
 
@@ -309,11 +336,17 @@ namespace NCUT_AUTO_Refresh
 
         private void button5_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "正在连接到NCUT，如果长时间没有反应，请检查网络连接！";
             pictureBox1.Show();
             pictureBox2.Hide();
             pictureBox3.Hide();
             string str;
-            textBox1.Text = "正在连接到NCUT，如果长时间没有反应，请检查网络连接！";
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
             str = GetHttpWebRequest("http://192.168.254.251/");
             //Console.WriteLine(str);
             //MessageBox.Show(str);
@@ -346,8 +379,9 @@ namespace NCUT_AUTO_Refresh
                 string detail;
                 detail = "已使用流量 : " + flow1 / 1024 + flow3 + flow0 / 1024 + " M";
                 //MessageBox.Show(detail);
-                textBox2.Text = detail;
-                toolStripStatusLabel2.Text = "连接测试：已经连接到NCUT。";
+                //textBox2.Text = detail;
+                label3.Text = detail;
+               toolStripStatusLabel2.Text = "连接测试。。。";
 
                 pictureBox1.Hide();
             }
@@ -356,8 +390,8 @@ namespace NCUT_AUTO_Refresh
                 toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
                 Console.WriteLine(ex.Message);
                 pictureBox1.Hide();
-                pictureBox2.Show();
-                pictureBox3.Hide();
+                pictureBox2.Hide();
+                pictureBox3.Show();
                 DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
