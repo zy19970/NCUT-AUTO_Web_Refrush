@@ -154,11 +154,6 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
-                DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    System.Diagnostics.Process.Start("http://192.168.254.251/");
-                }
             }
         }
 
