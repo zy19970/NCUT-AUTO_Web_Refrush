@@ -51,6 +51,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -138,7 +140,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 79);
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.textBox1.Location = new System.Drawing.Point(81, 67);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -149,16 +152,17 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 152);
+            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.textBox2.Location = new System.Drawing.Point(81, 116);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(198, 23);
+            this.textBox2.Size = new System.Drawing.Size(198, 25);
             this.textBox2.TabIndex = 6;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(220, 201);
+            this.button5.Location = new System.Drawing.Point(310, 154);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 33);
@@ -169,7 +173,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(328, 201);
+            this.button6.Location = new System.Drawing.Point(403, 154);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(87, 33);
@@ -208,7 +212,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::NCUT_AUTO_Refresh.Properties.Resources.yellow;
-            this.pictureBox3.Location = new System.Drawing.Point(164, 214);
+            this.pictureBox3.Location = new System.Drawing.Point(179, 179);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
             this.pictureBox3.TabIndex = 11;
@@ -217,7 +221,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::NCUT_AUTO_Refresh.Properties.Resources.red;
-            this.pictureBox2.Location = new System.Drawing.Point(124, 214);
+            this.pictureBox2.Location = new System.Drawing.Point(139, 179);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
@@ -227,18 +231,39 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::NCUT_AUTO_Refresh.Properties.Resources.green;
-            this.pictureBox1.Location = new System.Drawing.Point(80, 214);
+            this.pictureBox1.Location = new System.Drawing.Point(95, 179);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(20, 20);
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(78, 226);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(366, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "如果只有黄灯亮起，请单击“连接测试”检查是否已经登陆NCUT。";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(78, 243);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(214, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "如果只有红灯亮起，请检查WIFI连接！";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 289);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -294,6 +319,8 @@
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

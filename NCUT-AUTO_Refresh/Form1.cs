@@ -150,10 +150,11 @@ namespace NCUT_AUTO_Refresh
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
+                Console.WriteLine(ex.Message);
+
             }
         }
 
@@ -375,6 +376,11 @@ namespace NCUT_AUTO_Refresh
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
