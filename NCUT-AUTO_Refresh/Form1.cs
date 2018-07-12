@@ -42,6 +42,12 @@ namespace NCUT_AUTO_Refresh
                 Stream receviceStream = result.GetResponseStream();
                 StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("utf-8"));
                 strHTML = readerOfStream.ReadToEnd();
+                button1.Enabled = true;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+                button5.Enabled = true;
+                button6.Enabled = true;
                 readerOfStream.Close();
                 receviceStream.Close();
                 result.Close();
@@ -68,12 +74,6 @@ namespace NCUT_AUTO_Refresh
                 {
                     Stream receviceStream = result.GetResponseStream();
                     StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("gb2312"));
-                    button1.Enabled = true;
-                    button2.Enabled = true;
-                    button3.Enabled = true;
-                    button4.Enabled = true;
-                    button5.Enabled = true;
-                    button6.Enabled = true;
                     strHTML = readerOfStream.ReadToEnd();
                     readerOfStream.Close();
                     receviceStream.Close();
@@ -84,7 +84,6 @@ namespace NCUT_AUTO_Refresh
                 {
                     //MessageBox.Show("没有连接到NCUT！", "未连接");
                     Console.WriteLine(ex.Message);
-
                     pictureBox1.Hide();
                     pictureBox2.Show();
                     pictureBox3.Hide();
@@ -188,6 +187,7 @@ namespace NCUT_AUTO_Refresh
             toolStripStatusLabel1.Text = DateTime.Now.ToString();
             toolStripStatusLabel2.Text = "完成初始化。";
             timer1.Start();
+            MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！","我想对你说句真心话");
             //button5_Click(sender,e);
         }
 
@@ -381,7 +381,7 @@ namespace NCUT_AUTO_Refresh
                 //MessageBox.Show(detail);
                 //textBox2.Text = detail;
                 label3.Text = detail;
-               toolStripStatusLabel2.Text = "连接测试。。。";
+               toolStripStatusLabel2.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。";
 
                 pictureBox1.Hide();
             }
@@ -417,6 +417,16 @@ namespace NCUT_AUTO_Refresh
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！", "我想对你说句真心话");
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！", "我想对你说句真心话");
         }
     }
 }
