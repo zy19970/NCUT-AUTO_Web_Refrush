@@ -202,6 +202,7 @@
             // 
             // timer4
             // 
+            this.timer4.Interval = 200;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // timer5
@@ -301,6 +302,7 @@
             this.label6.Size = new System.Drawing.Size(284, 17);
             this.label6.TabIndex = 15;
             this.label6.Text = "进行定时刷新前请先点击“连接测试”确保一切就绪";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 

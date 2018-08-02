@@ -457,5 +457,10 @@ namespace NCUT_AUTO_Refresh
         {
 
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://192.168.254.251/");
+        }
     }
 }
