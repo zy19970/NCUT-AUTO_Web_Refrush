@@ -181,7 +181,12 @@ namespace NCUT_AUTO_Refresh
                 timer2.Stop();
                 timer4.Stop();
                 timer3.Stop();
+
+                label7.Text = "";
                 this.label3.Text = "-------------------";
+                notifyIcon1.BalloonTipTitle = "注意";
+                notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
+                notifyIcon1.ShowBalloonTip(3000);
                 Console.WriteLine(ex.Message);
 
             }
@@ -300,6 +305,7 @@ namespace NCUT_AUTO_Refresh
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button5_Click( sender, e);
             pictureBox1.Hide();
             pictureBox2.Hide();
             pictureBox3.Hide();
@@ -311,6 +317,7 @@ namespace NCUT_AUTO_Refresh
 
         private void button2_Click(object sender, EventArgs e)
         {
+            button5_Click(sender, e);
             pictureBox1.Hide();
             pictureBox2.Hide();
             pictureBox3.Hide();
@@ -322,6 +329,7 @@ namespace NCUT_AUTO_Refresh
 
         private void button3_Click(object sender, EventArgs e)
         {
+            button5_Click(sender, e);
             pictureBox1.Hide();
             pictureBox2.Hide();
             pictureBox3.Hide();
