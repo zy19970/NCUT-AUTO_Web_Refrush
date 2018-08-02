@@ -150,6 +150,14 @@ namespace NCUT_AUTO_Refresh
                 result2 = GET(b);
                 result2 = fanzhuan(result2);
                 int.TryParse(result2, out res);
+
+                string id = a[62];
+                string id1;
+                string id2;
+                id1 = GET(id);
+                id2 = fanzhuan(id1);
+                label7.Text = "ID: " + id2;
+
                 int flow, flow1, flow0;
                 flow = res;
                 flow0 = flow % 1024;
@@ -331,6 +339,7 @@ namespace NCUT_AUTO_Refresh
             pictureBox1.Show();
             pictureBox2.Show();
             pictureBox3.Show();
+            label7.Text = "";
             toolStripStatusLabel2.Text = "您已经停止刷新。";
         }
 
@@ -359,6 +368,7 @@ namespace NCUT_AUTO_Refresh
             //               Console.WriteLine("Found match at position " + m.Index); //输入匹配字符的位置
             //          }
             int res;
+            //int idnum;
             try
             {
                 string b = a[54];
@@ -367,6 +377,15 @@ namespace NCUT_AUTO_Refresh
                 result2 = GET(b);
                 result1 = fanzhuan(result2);
                 int.TryParse(result1, out res);
+
+                string id = a[62];
+                string id1;
+                string id2;
+                id1 = GET(id);
+                id2 = fanzhuan(id1);
+                label7.Text = "ID: "+id2;
+
+
                 //res = int.Parse(b);
                 //MessageBox.Show(b);
                 int flow, flow1, flow0;
@@ -427,6 +446,11 @@ namespace NCUT_AUTO_Refresh
         private void label5_Click(object sender, EventArgs e)
         {
             MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！", "我想对你说句真心话");
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
