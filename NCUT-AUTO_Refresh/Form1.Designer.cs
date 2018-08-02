@@ -127,7 +127,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 33);
             this.button3.TabIndex = 4;
-            this.button3.Text = "5s刷新";
+            this.button3.Text = "极速刷新";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -197,13 +197,16 @@
             // 
             // timer3
             // 
-            this.timer3.Interval = 3000;
+            this.timer3.Interval = 1500;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // timer4
             // 
-            this.timer4.Interval = 5000;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
+            // 
+            // timer5
+            // 
+            this.timer5.Tick += new System.EventHandler(this.timer5_Tick);
             // 
             // pictureBox3
             // 

@@ -325,7 +325,7 @@ namespace NCUT_AUTO_Refresh
             pictureBox1.Hide();
             pictureBox2.Hide();
             pictureBox3.Hide();
-            toolStripStatusLabel2.Text = "正在进行间隔5s的刷新。";
+            toolStripStatusLabel2.Text = "正在进行极速刷新。";
             timer4.Start();
             timer2.Stop();
             timer3.Stop();
@@ -449,6 +449,11 @@ namespace NCUT_AUTO_Refresh
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer5_Tick(object sender, EventArgs e)
         {
 
         }
