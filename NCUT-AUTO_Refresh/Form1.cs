@@ -284,7 +284,7 @@ namespace NCUT_AUTO_Refresh
 
         private void timer4_Tick(object sender, EventArgs e)
         {
-            toolStripStatusLabel2.Text = "正在进行间隔5s的刷新。";
+            toolStripStatusLabel2.Text = "正在进行极速刷新。";
 
             pictureBox2.Hide();
             pictureBox3.Hide();
