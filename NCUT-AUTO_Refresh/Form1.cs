@@ -40,7 +40,7 @@ namespace NCUT_AUTO_Refresh
                 myReq.Headers.Add("Accept-Language", "zh-cn,en-us;q=0.5");
                 result = (HttpWebResponse)myReq.GetResponse();
                 Stream receviceStream = result.GetResponseStream();
-                StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("utf-8"));
+                StreamReader readerOfStream = new StreamReader(receviceStream, System.Text.Encoding.GetEncoding("gb2312"));
                 strHTML = readerOfStream.ReadToEnd();
                 button1.Enabled = true;
                 button2.Enabled = true;
@@ -151,12 +151,18 @@ namespace NCUT_AUTO_Refresh
                 result2 = fanzhuan(result2);
                 int.TryParse(result2, out res);
 
+                string name = a[71];
+                Regex reg = new Regex("[\u4e00-\u9fa5]+");
+                foreach (Match RealName in reg.Matches(name))
+                    name = RealName.ToString();
+                //Console.WriteLine(RealName);
+
                 string id = a[62];
                 string id1;
                 string id2;
                 id1 = GET(id);
                 id2 = fanzhuan(id1);
-                label7.Text = "ID: " + id2;
+                label7.Text = "ID: " + id2 + "  " + name;
 
                 int flow, flow1, flow0;
                 flow = res;
@@ -370,6 +376,7 @@ namespace NCUT_AUTO_Refresh
             textBox1.Text = str;
             //           Regex r = new Regex("flow='");
             string[] a = str.Split(';');
+            //string[] name  = str.Split(';');
             //           Match m = r.Match(str);
             //           if (m.Success)
             //           {
@@ -386,12 +393,18 @@ namespace NCUT_AUTO_Refresh
                 result1 = fanzhuan(result2);
                 int.TryParse(result1, out res);
 
+                string name = a[71];
+                Regex reg = new Regex("[\u4e00-\u9fa5]+");
+                foreach (Match RealName in reg.Matches(name))
+                    name = RealName.ToString();
+                //Console.WriteLine(RealName);
+
                 string id = a[62];
                 string id1;
                 string id2;
                 id1 = GET(id);
                 id2 = fanzhuan(id1);
-                label7.Text = "ID: "+id2;
+                label7.Text = "ID: "+id2+ "  "+name;
 
 
                 //res = int.Parse(b);
