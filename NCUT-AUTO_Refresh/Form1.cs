@@ -157,7 +157,7 @@ namespace NCUT_AUTO_Refresh
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "累计使用时长: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
 
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
@@ -195,7 +195,8 @@ namespace NCUT_AUTO_Refresh
                 timer4.Stop();
                 timer3.Stop();
 
-                label7.Text = "";
+                label7.Text = "-------------------";
+                label8.Text = "-------------------";
                 this.label3.Text = "-------------------";
                 notifyIcon1.BalloonTipTitle = "注意";
                 notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
@@ -406,7 +407,7 @@ namespace NCUT_AUTO_Refresh
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "累计使用时长: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
 
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");

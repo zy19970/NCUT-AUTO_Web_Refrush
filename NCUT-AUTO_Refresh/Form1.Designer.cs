@@ -322,9 +322,9 @@
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.label8.Location = new System.Drawing.Point(41, 130);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.Size = new System.Drawing.Size(99, 20);
             this.label8.TabIndex = 17;
-            this.label8.Text = "累计使用时长";
+            this.label8.Text = "有效使用时长*";
             // 
             // Form1
             // 
