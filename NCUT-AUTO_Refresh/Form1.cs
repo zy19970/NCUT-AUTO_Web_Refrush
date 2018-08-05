@@ -151,6 +151,14 @@ namespace NCUT_AUTO_Refresh
                 result2 = fanzhuan(result2);
                 int.TryParse(result2, out res);
 
+                string Usetime = a[53];
+                int time;
+                result2 = GET(Usetime);
+                Usetime = fanzhuan(result2);
+                int.TryParse(Usetime, out time);
+                TimeSpan ts = new TimeSpan(0, time, 0);
+                label8.Text = "累计使用时长: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
                 foreach (Match RealName in reg.Matches(name))
@@ -176,7 +184,6 @@ namespace NCUT_AUTO_Refresh
                 button1.Enabled = true;
                 button2.Enabled = true;
                 button3.Enabled = true;
-                //this.textBox2.Text = detail;
                 label3.Text = detail;
             }
             catch (Exception ex)
@@ -392,6 +399,14 @@ namespace NCUT_AUTO_Refresh
                 result2 = GET(b);
                 result1 = fanzhuan(result2);
                 int.TryParse(result1, out res);
+
+                string Usetime = a[53];
+                int time;
+                result2 = GET(Usetime);
+                Usetime = fanzhuan(result2);
+                int.TryParse(Usetime, out time);
+                TimeSpan ts = new TimeSpan(0, time, 0);
+                label8.Text = "累计使用时长: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
 
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
