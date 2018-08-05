@@ -170,7 +170,7 @@ namespace NCUT_AUTO_Refresh
                 string id2;
                 id1 = GET(id);
                 id2 = fanzhuan(id1);
-                label7.Text = "ID: " + id2 + "  " + name;
+                label7.Text = "Name: " + name + "  ID：" + id2;
 
                 int flow, flow1, flow0;
                 flow = res;
@@ -420,7 +420,7 @@ namespace NCUT_AUTO_Refresh
                 string id2;
                 id1 = GET(id);
                 id2 = fanzhuan(id1);
-                label7.Text = "ID: "+id2+ "  "+name;
+                label7.Text = "Name: "+name+ "  ID："+id2;
 
 
                 //res = int.Parse(b);
