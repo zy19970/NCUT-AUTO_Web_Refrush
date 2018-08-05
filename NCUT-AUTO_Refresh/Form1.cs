@@ -381,7 +381,7 @@ namespace NCUT_AUTO_Refresh
             str = GetHttpWebRequest("http://192.168.254.251/");
             //Console.WriteLine(str);
             //MessageBox.Show(str);
-            textBox1.Text = str;
+            textBox1.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。\r\n"+str;
             //           Regex r = new Regex("flow='");
             string[] a = str.Split(';');
             //string[] name  = str.Split(';');
