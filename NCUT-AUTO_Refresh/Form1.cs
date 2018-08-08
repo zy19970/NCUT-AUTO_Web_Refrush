@@ -157,7 +157,7 @@ namespace NCUT_AUTO_Refresh
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                label8.Text = "有效使用时长*:  " + ts.Days + " 天 " + ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
@@ -407,7 +407,8 @@ namespace NCUT_AUTO_Refresh
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                //label8.Text = "有效使用时长*: " + ts.TotalMinutes + "小时 " ;
+                label8.Text = "有效使用时长*:  " + ts.Days +" 天 "+ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
                 string name = a[71];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
