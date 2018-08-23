@@ -145,13 +145,13 @@ namespace NCUT_AUTO_Refresh
             int res;
             try
             {
-                string b = a[54];
+                string b = a[3];
                 string result2;
                 result2 = GET(b);
                 result2 = fanzhuan(result2);
                 int.TryParse(result2, out res);
 
-                string Usetime = a[53];
+                string Usetime = a[2];
                 int time;
                 result2 = GET(Usetime);
                 Usetime = fanzhuan(result2);
@@ -159,13 +159,13 @@ namespace NCUT_AUTO_Refresh
                 TimeSpan ts = new TimeSpan(0, time, 0);
                 label8.Text = "有效使用时长*:  " + ts.Days + " 天 " + ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
-                string name = a[71];
+                string name = a[27];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
                 foreach (Match RealName in reg.Matches(name))
                     name = RealName.ToString();
                 //Console.WriteLine(RealName);
 
-                string id = a[62];
+                string id = a[12];
                 string id1;
                 string id2;
                 id1 = GET(id);
@@ -394,14 +394,14 @@ namespace NCUT_AUTO_Refresh
             //int idnum;
             try
             {
-                string b = a[54];
+                string b = a[3];
                 string result2;
                 string result1;
                 result2 = GET(b);
                 result1 = fanzhuan(result2);
                 int.TryParse(result1, out res);
 
-                string Usetime = a[53];
+                string Usetime = a[2];
                 int time;
                 result2 = GET(Usetime);
                 Usetime = fanzhuan(result2);
@@ -410,13 +410,13 @@ namespace NCUT_AUTO_Refresh
                 //label8.Text = "有效使用时长*: " + ts.TotalMinutes + "小时 " ;
                 label8.Text = "有效使用时长*:  " + ts.Days +" 天 "+ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
-                string name = a[71];
+                string name = a[27];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
                 foreach (Match RealName in reg.Matches(name))
                     name = RealName.ToString();
                 //Console.WriteLine(RealName);
 
-                string id = a[62];
+                string id = a[12];
                 string id1;
                 string id2;
                 id1 = GET(id);
