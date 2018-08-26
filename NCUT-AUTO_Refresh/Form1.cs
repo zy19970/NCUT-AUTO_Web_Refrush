@@ -185,6 +185,26 @@ namespace NCUT_AUTO_Refresh
                 button2.Enabled = true;
                 button3.Enabled = true;
                 label3.Text = detail;
+
+                if (res == 0 && name == "基本参数")
+                {
+                    pictureBox1.Hide();
+                    pictureBox2.Hide();
+                    pictureBox3.Show();
+
+                    timer2.Stop();
+                    timer4.Stop();
+                    timer3.Stop();
+
+                    label7.Text = "-------------------";
+                    label8.Text = "-------------------";
+                    label3.Text = "-------------------";
+
+                    notifyIcon1.BalloonTipTitle = "注意";
+                    notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
+                    notifyIcon1.ShowBalloonTip(3000);
+
+                }
             }
             catch (Exception ex)
             {
@@ -439,7 +459,23 @@ namespace NCUT_AUTO_Refresh
                 //textBox2.Text = detail;
                 label3.Text = detail;
                toolStripStatusLabel2.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。";
+                if (res==0 && name=="基本参数")
+                {
+                    toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
+                    pictureBox1.Hide();
+                    pictureBox2.Hide();
+                    pictureBox3.Show();
 
+                    label8.Text = "ID";
+                    label7.Text = "有效使用时长*:";
+                    label3.Text = "已使用流量 :";
+
+                    DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("http://192.168.254.251/");
+                    }
+                }
                 pictureBox1.Hide();
             }
             catch (Exception ex)
