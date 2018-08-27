@@ -186,31 +186,35 @@ namespace NCUT_AUTO_Refresh
                 button3.Enabled = true;
                 label3.Text = detail;
 
-                if (res == 0 && name == "基本参数")
-                {
-                    pictureBox1.Hide();
-                    pictureBox2.Hide();
-                    pictureBox3.Show();
+                string TextFlag = a[200];//未登录时数组会越界
 
-                    timer2.Stop();
-                    timer4.Stop();
-                    timer3.Stop();
+                //if (res == 0 && name == "基本参数")
+                //{
+                //    pictureBox1.Hide();
+                //    pictureBox2.Hide();
+                //    pictureBox3.Show();
 
-                    label7.Text = "-------------------";
-                    label8.Text = "-------------------";
-                    label3.Text = "-------------------";
+                //    timer2.Stop();
+                //    timer4.Stop();
+                //    timer3.Stop();
 
-                    notifyIcon1.BalloonTipTitle = "注意";
-                    notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
-                    notifyIcon1.ShowBalloonTip(3000);
+                //    label7.Text = "-------------------";
+                //    label8.Text = "-------------------";
+                //    label3.Text = "-------------------";
 
-                }
+                //    notifyIcon1.BalloonTipTitle = "注意";
+                //    notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
+                //    notifyIcon1.ShowBalloonTip(3000);
+
+                //}
+
             }
             catch (Exception ex)
             {
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
+
                 timer2.Stop();
                 timer4.Stop();
                 timer3.Stop();
@@ -218,9 +222,11 @@ namespace NCUT_AUTO_Refresh
                 label7.Text = "-------------------";
                 label8.Text = "-------------------";
                 this.label3.Text = "-------------------";
+
                 notifyIcon1.BalloonTipTitle = "注意";
                 notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
                 notifyIcon1.ShowBalloonTip(3000);
+
                 Console.WriteLine(ex.Message);
 
             }
@@ -459,6 +465,9 @@ namespace NCUT_AUTO_Refresh
                 //textBox2.Text = detail;
                 label3.Text = detail;
                toolStripStatusLabel2.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。";
+
+                string TextFlag = a[200];
+
                 if (res==0 && name=="基本参数")
                 {
                     toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
@@ -476,12 +485,16 @@ namespace NCUT_AUTO_Refresh
                         System.Diagnostics.Process.Start("http://192.168.254.251/");
                     }
                 }
+              
                 pictureBox1.Hide();
             }
             catch (Exception ex)
             {
                 toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
                 Console.WriteLine(ex.Message);
+                label8.Text = "ID";
+                label7.Text = "有效使用时长*:";
+                label3.Text = "已使用流量 :";
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
