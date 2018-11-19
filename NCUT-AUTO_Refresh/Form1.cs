@@ -139,8 +139,8 @@ namespace NCUT_AUTO_Refresh
         {
             string str;
             this.textBox1.Text = "正在连接到NCUT，如果长时间没有反应，请检查网络连接！";
-            str = GetHttpWebRequest("http://192.168.254.251/");
-            this.textBox1.Text = "已经连接到NCUT(192.168.254.251)！";
+            str = GetHttpWebRequest("http://ip.ncut.edu.cn/");
+            this.textBox1.Text = "已经连接到NCUT(ip.ncut.edu.cn)！";
             string[] a = str.Split(';');
             int res;
             try
@@ -404,7 +404,7 @@ namespace NCUT_AUTO_Refresh
             button4.Enabled = false;
             button5.Enabled = false;
             button6.Enabled = false;
-            str = GetHttpWebRequest("http://192.168.254.251/");
+            str = GetHttpWebRequest("http://ip.ncut.edu.cn/");
             //Console.WriteLine(str);
             //MessageBox.Show(str);
             textBox1.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。\r\n"+str;
@@ -482,7 +482,7 @@ namespace NCUT_AUTO_Refresh
                     DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("http://192.168.254.251/");
+                        System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
                     }
                 }
               
@@ -501,7 +501,7 @@ namespace NCUT_AUTO_Refresh
                 DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    System.Diagnostics.Process.Start("http://192.168.254.251/");
+                    System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
                 }
             }
 
@@ -547,7 +547,7 @@ namespace NCUT_AUTO_Refresh
 
         private void label6_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://192.168.254.251/");
+            System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
         }
     }
 }
