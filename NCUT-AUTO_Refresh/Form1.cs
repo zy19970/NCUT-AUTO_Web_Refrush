@@ -139,33 +139,33 @@ namespace NCUT_AUTO_Refresh
         {
             string str;
             this.textBox1.Text = "正在连接到NCUT，如果长时间没有反应，请检查网络连接！";
-            str = GetHttpWebRequest("http://192.168.254.251/");
-            this.textBox1.Text = "已经连接到NCUT(192.168.254.251)！";
+            str = GetHttpWebRequest("http://ip.ncut.edu.cn/");
+            this.textBox1.Text = "已经连接到NCUT(ip.ncut.edu.cn)！";
             string[] a = str.Split(';');
             int res;
             try
             {
-                string b = a[54];
+                string b = a[3];
                 string result2;
                 result2 = GET(b);
                 result2 = fanzhuan(result2);
                 int.TryParse(result2, out res);
 
-                string Usetime = a[53];
+                string Usetime = a[2];
                 int time;
                 result2 = GET(Usetime);
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                label8.Text = "有效使用时长*:  " + ts.Days + " 天 " + ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
-                string name = a[71];
+                string name = a[27];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
                 foreach (Match RealName in reg.Matches(name))
                     name = RealName.ToString();
                 //Console.WriteLine(RealName);
 
-                string id = a[62];
+                string id = a[12];
                 string id1;
                 string id2;
                 id1 = GET(id);
@@ -185,12 +185,36 @@ namespace NCUT_AUTO_Refresh
                 button2.Enabled = true;
                 button3.Enabled = true;
                 label3.Text = detail;
+
+                string TextFlag = a[200];//未登录时数组会越界
+
+                //if (res == 0 && name == "基本参数")
+                //{
+                //    pictureBox1.Hide();
+                //    pictureBox2.Hide();
+                //    pictureBox3.Show();
+
+                //    timer2.Stop();
+                //    timer4.Stop();
+                //    timer3.Stop();
+
+                //    label7.Text = "-------------------";
+                //    label8.Text = "-------------------";
+                //    label3.Text = "-------------------";
+
+                //    notifyIcon1.BalloonTipTitle = "注意";
+                //    notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
+                //    notifyIcon1.ShowBalloonTip(3000);
+
+                //}
+
             }
             catch (Exception ex)
             {
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
+
                 timer2.Stop();
                 timer4.Stop();
                 timer3.Stop();
@@ -198,9 +222,11 @@ namespace NCUT_AUTO_Refresh
                 label7.Text = "-------------------";
                 label8.Text = "-------------------";
                 this.label3.Text = "-------------------";
+
                 notifyIcon1.BalloonTipTitle = "注意";
                 notifyIcon1.BalloonTipText = "您可能并未登陆NCUT-AUTO，请您打开浏览器重新登陆。";
                 notifyIcon1.ShowBalloonTip(3000);
+
                 Console.WriteLine(ex.Message);
 
             }
@@ -378,7 +404,7 @@ namespace NCUT_AUTO_Refresh
             button4.Enabled = false;
             button5.Enabled = false;
             button6.Enabled = false;
-            str = GetHttpWebRequest("http://192.168.254.251/");
+            str = GetHttpWebRequest("http://ip.ncut.edu.cn/");
             //Console.WriteLine(str);
             //MessageBox.Show(str);
             textBox1.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。\r\n"+str;
@@ -394,28 +420,29 @@ namespace NCUT_AUTO_Refresh
             //int idnum;
             try
             {
-                string b = a[54];
+                string b = a[3];
                 string result2;
                 string result1;
                 result2 = GET(b);
                 result1 = fanzhuan(result2);
                 int.TryParse(result1, out res);
 
-                string Usetime = a[53];
+                string Usetime = a[2];
                 int time;
                 result2 = GET(Usetime);
                 Usetime = fanzhuan(result2);
                 int.TryParse(Usetime, out time);
                 TimeSpan ts = new TimeSpan(0, time, 0);
-                label8.Text = "有效使用时长*: " + ts.Hours + "小时 " + ts.Minutes + " 分钟";
+                //label8.Text = "有效使用时长*: " + ts.TotalMinutes + "小时 " ;
+                label8.Text = "有效使用时长*:  " + ts.Days +" 天 "+ts.Hours + " 小时 " + ts.Minutes + "分钟";
 
-                string name = a[71];
+                string name = a[27];
                 Regex reg = new Regex("[\u4e00-\u9fa5]+");
                 foreach (Match RealName in reg.Matches(name))
                     name = RealName.ToString();
                 //Console.WriteLine(RealName);
 
-                string id = a[62];
+                string id = a[12];
                 string id1;
                 string id2;
                 id1 = GET(id);
@@ -439,19 +466,42 @@ namespace NCUT_AUTO_Refresh
                 label3.Text = detail;
                toolStripStatusLabel2.Text = "确保绿色指示灯闪烁一次，其它颜色指示灯关闭。";
 
+                string TextFlag = a[200];
+
+                if (res==0 && name=="基本参数")
+                {
+                    toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
+                    pictureBox1.Hide();
+                    pictureBox2.Hide();
+                    pictureBox3.Show();
+
+                    label8.Text = "ID";
+                    label7.Text = "有效使用时长*:";
+                    label3.Text = "已使用流量 :";
+
+                    DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
+                    }
+                }
+              
                 pictureBox1.Hide();
             }
             catch (Exception ex)
             {
                 toolStripStatusLabel2.Text = "连接测试：连接失败请检查网络是否连接，或者是否登陆NCUT！";
                 Console.WriteLine(ex.Message);
+                label8.Text = "ID";
+                label7.Text = "有效使用时长*:";
+                label3.Text = "已使用流量 :";
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
                 DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    System.Diagnostics.Process.Start("http://192.168.254.251/");
+                    System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
                 }
             }
 
@@ -497,7 +547,7 @@ namespace NCUT_AUTO_Refresh
 
         private void label6_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://192.168.254.251/");
+            System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
         }
     }
 }
