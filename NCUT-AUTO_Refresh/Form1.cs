@@ -322,13 +322,21 @@ namespace NCUT_AUTO_Refresh
                     label7.Text = "有效使用时长*:";
                     label3.Text = "已使用流量 :";
 
-                    Ping ping = new Ping();
-                    
-                    DialogResult dr = MessageBox.Show("Ping："+ping.Send("192.168.254.251").Status+ "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dr == DialogResult.Yes)
+                    try
                     {
-                        System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
+                        Ping usable = new Ping();
+                        Console.WriteLine(usable.Send("192.168.254.251").Status);
+                        DialogResult dr = MessageBox.Show("Ping：" + usable.Send("192.168.254.251").Status + "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
+                        }
                     }
+                    catch
+                    {
+                        DialogResult dr = MessageBox.Show("Ping：Fail" + "！\r\n您可能并未连接到NCUT-AUTO，请您打开网络和Internet设置。", "连接提示");
+                    }
+                   
                 }
 
                 pictureBox1.Hide();
@@ -343,11 +351,19 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
-                Ping ping = new Ping();
-                DialogResult dr = MessageBox.Show("Ping：" + ping.Send("192.168.254.251").Status + "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.Yes)
+                try
                 {
-                    System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
+                    Ping usable = new Ping();
+                    Console.WriteLine(usable.Send("192.168.254.251").Status);
+                    DialogResult dr = MessageBox.Show("Ping：" + usable.Send("192.168.254.251").Status + "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
+                    }
+                }
+                catch
+                {
+                    DialogResult dr = MessageBox.Show("Ping：Fail" + "！\r\n您可能并未连接到NCUT-AUTO，请您打开网络和Internet设置。", "连接提示");
                 }
             }
         }
