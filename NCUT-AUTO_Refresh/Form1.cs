@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,6 +20,7 @@ namespace NCUT_AUTO_Refresh
         public Form1()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;//取消线程间的安全检查
         }
 
         bool IsPic = false;
@@ -320,7 +322,9 @@ namespace NCUT_AUTO_Refresh
                     label7.Text = "有效使用时长*:";
                     label3.Text = "已使用流量 :";
 
-                    DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    Ping ping = new Ping();
+                    
+                    DialogResult dr = MessageBox.Show("Ping："+ping.Send("192.168.254.251").Status+ "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
@@ -339,14 +343,38 @@ namespace NCUT_AUTO_Refresh
                 pictureBox1.Hide();
                 pictureBox2.Hide();
                 pictureBox3.Show();
-                DialogResult dr = MessageBox.Show("您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                Ping ping = new Ping();
+                DialogResult dr = MessageBox.Show("Ping：" + ping.Send("192.168.254.251").Status + "！\r\n您可能并未登陆NCUT-AUTO，是否打开浏览器为您登陆？", "登陆提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
                     System.Diagnostics.Process.Start("http://ip.ncut.edu.cn/");
                 }
             }
         }
+        static private string GetIpAddress()
+        {
+            string hostName = Dns.GetHostName();   //获取本机名
+            IPHostEntry localhost = Dns.GetHostByName(hostName);    //方法已过期，可以获取IPv4的地址
+                                                                    //IPHostEntry localhost = Dns.GetHostEntry(hostName);   //获取IPv6地址
+            IPAddress localaddr = localhost.AddressList[0];
 
+            return localaddr.ToString();
+        }
+        public static string GetMacByNetworkInterface()
+        {
+            try
+            {
+                NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+                foreach (NetworkInterface ni in interfaces)
+                {
+                    return BitConverter.ToString(ni.GetPhysicalAddress().GetAddressBytes());
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return "00-00-00-00-00-00";
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -534,12 +562,13 @@ namespace NCUT_AUTO_Refresh
 
         private void label4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！", "我想对你说句真心话");
+
+            MessageBox.Show("本机的IP地址为："+GetIpAddress(), "本机的IP地址");
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("如果您在连接到非NCUT的外部网络中使用“连接测试”按钮，程序会假死40s左右，不建议您这样尝试！", "我想对你说句真心话");
+            MessageBox.Show("本机的MAC地址为："+GetMacByNetworkInterface(), "本机的MAC地址");
         }
 
         private void label7_Click(object sender, EventArgs e)
